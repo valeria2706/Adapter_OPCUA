@@ -123,6 +123,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\NewAdapter\Freeopcua\Adapter_opcua\announcement.pb.cc" />
+    <ClCompile Include="..\..\..\NewAdapter\Freeopcua\Adapter_opcua\announcements.pb.cc" />
+    <ClCompile Include="..\..\..\NewAdapter\Freeopcua\Adapter_opcua\configuration.pb.cc" />
+    <ClCompile Include="..\..\..\NewAdapter\Freeopcua\Adapter_opcua\label.pb.cc" />
+    <ClCompile Include="..\..\..\NewAdapter\Freeopcua\Adapter_opcua\message.pb.cc" />
+    <ClCompile Include="ClientGenerator.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="websocket.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\NewAdapter\Freeopcua\Adapter_opcua\announcement.pb.h" />
+    <ClInclude Include="..\..\..\NewAdapter\Freeopcua\Adapter_opcua\announcements.pb.h" />
+    <ClInclude Include="..\..\..\NewAdapter\Freeopcua\Adapter_opcua\configuration.pb.h" />
+    <ClInclude Include="..\..\..\NewAdapter\Freeopcua\Adapter_opcua\label.pb.h" />
+    <ClInclude Include="..\..\..\NewAdapter\Freeopcua\Adapter_opcua\message.pb.h" />
+    <ClInclude Include="ClientGenerator.h" />
+    <ClInclude Include="websocket.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

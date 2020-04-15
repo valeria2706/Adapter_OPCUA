@@ -44,6 +44,5 @@ void ClientGenerator::WriteValue(const std::string& nodenumber, const Variant& v
 
 	write.SetValue(value);
 
-	std::this_thread::sleep_for(std::chrono::seconds(1));
 
 }

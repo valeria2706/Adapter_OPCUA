@@ -1,3 +1,4 @@
+#pragma once
 #include <opc/ua/client/client.h>
 #include <opc/ua/node.h>
 #include <opc/ua/subscription.h>
@@ -28,3 +29,6 @@ public:
 	int ReadValue(const std::string&);
 	void WriteValue(const std::string&, const Variant&);
 };
+
+
+

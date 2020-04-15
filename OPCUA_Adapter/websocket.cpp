@@ -1,5 +1,6 @@
 #include "websocket.h"
 
+
 void AxiniConnection::announce(std::string label_name, AMSAnnouncement* announcement, std::string parameter_name, AMSLabeltype type, std::string channel) {
 	AMSLabel* label = new AMSLabel();
 	label = announcement->add_labels();
@@ -59,14 +60,21 @@ void AxiniConnection::on_open(websocketpp::connection_hdl hdl) {
 	announcement->set_name("xuanying@ICT");
 	// add labels to the announcement 
 
-	announce("vertical_move", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "vertical_controller");
-	announce("fetch_Vsteps", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "vertical_controller");
-	announce("move_up", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "vertical_controller");
-	announce("move_down", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "vertical_controller");
-	announce("stop", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "vertical_controller");
-	announce("current_Vsteps", announcement, "_steps", AMSLabeltype::Label_LabelType_RESPONSE, "vertical_controller");
-	announce("never", announcement, "", AMSLabeltype::Label_LabelType_RESPONSE, "vertical_controller");
-	announce("ok_vertical", announcement, "", AMSLabeltype::Label_LabelType_RESPONSE, "vertical_controller");
+	announce("go_x", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
+	announce("go_y", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
+	announce("go_z", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
+	announce("go_conveyor", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
+	announce("forward", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
+	announce("backward", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
+	announce("read_encoder", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
+	announce("stop", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
+	//announce("read_gpio", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
+
+
+	announce("encoder_val", announcement, "_encoder", AMSLabeltype::Label_LabelType_RESPONSE, "warehouse");
+	announce("wait_for_3s", announcement, "", AMSLabeltype::Label_LabelType_RESPONSE, "warehouse");
+	announce("positioned", announcement, "", AMSLabeltype::Label_LabelType_RESPONSE, "warehouse");
+	//announce("gpio_val", announcement, "_gpio", AMSLabeltype::Label_LabelType_RESPONSE, "warehouse");
 	// sending the announcement
 	AMSMessage message;
 	message.set_allocated_announcement(announcement);
@@ -115,21 +123,18 @@ void AxiniConnection::on_message(websocketpp::connection_hdl hdl, message_ptr ms
 		sendStimulus(message, hdl);
 		std::cout << "Received Stimulus: " << message.label().label() << std::endl;
 		std::string stimulus = message.label().label();
-
-		//if this label is used to get position of digital twin
-		if (stimulus == "vertical_move") {
-			//dTwinConnectionV->setGameObject("Robot_VerticalMovement");
-			sendResponse("ok_vertical", hdl, NULL, "", "vertical_controller");
+		if (stimulus == "forward") {
+			client->WriteValue("ns=2;i=2001;", 1);
 		}
 
-		else if (stimulus == "fetch_Vsteps") {
-			//int temp = (int)*verticalMovementSteps;
-			sendResponse("current_Vsteps", hdl, 5, "_steps", "vertical_controller");
+		else if (stimulus == "stop") {
+			client->WriteValue("ns=2;i=2001;", 0);
 		}
-		//"move_Up" and "stop"
-		else {
-			std::cout << "receive: " << stimulus << std::endl;
+		else if(stimulus == "read_encoder"){
+			int readvalue = client->ReadValue("ns=2;i=2006;");
+			sendResponse("encoder_val", hdl, readvalue, "_encoder", "warehouse");
 		}
+		
 
 
 	}
@@ -146,7 +151,6 @@ void AxiniConnection::on_message(websocketpp::connection_hdl hdl, message_ptr ms
 }
 AxiniConnection::AxiniConnection(std::string uri, std::string AccessToken) {
 	try {
-
 		// Set logging to be pretty verbose (everything except message payloads)
 		c.set_access_channels(websocketpp::log::alevel::all);
 		c.clear_access_channels(websocketpp::log::alevel::frame_payload);

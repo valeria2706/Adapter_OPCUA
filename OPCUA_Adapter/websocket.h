@@ -43,7 +43,7 @@ public:
 	void sendResponse(std::string labelname, websocketpp::connection_hdl hdl, int currentvalue, std::string parameter_name, std::string channel);
 private:
 	client c;
-	ClientGenerator* client= new ClientGenerator("opc.tcp://192.168.1.105:4840/digitaltwin/cantilever");
+	ClientGenerator* client= new ClientGenerator("opc.tcp://192.168.7.2:4840/digitaltwin/cantilever");
 	//ClientGenerator* client2 = new ClientGenerator("opc.tcp://192.168.1.105:4840/digitaltwin/cantilever");
 	static context_ptr on_tls_init();
 

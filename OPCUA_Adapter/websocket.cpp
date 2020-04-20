@@ -64,8 +64,8 @@ void AxiniConnection::on_open(websocketpp::connection_hdl hdl) {
 	announce("go_y", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
 	announce("go_z", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
 	announce("go_conveyor", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
-	announce("forward", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
-	announce("backward", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
+	announce("up", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
+	announce("down", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
 	announce("read_encoder", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
 	announce("stop", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
 	//announce("read_gpio", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
@@ -123,15 +123,18 @@ void AxiniConnection::on_message(websocketpp::connection_hdl hdl, message_ptr ms
 		sendStimulus(message, hdl);
 		std::cout << "Received Stimulus: " << message.label().label() << std::endl;
 		std::string stimulus = message.label().label();
-		if (stimulus == "forward") {
-			client->WriteValue("ns=2;i=2001;", 1);
+		if (stimulus == "down") {
+			client->WriteValue("ns=2;i=2002;", 1);
+		}
+		else if (stimulus == "up") {
+			client->WriteValue("ns=2;i=2002;", -1);
 		}
 
 		else if (stimulus == "stop") {
-			client->WriteValue("ns=2;i=2001;", 0);
+			client->WriteValue("ns=2;i=2002;", 0);
 		}
 		else if(stimulus == "read_encoder"){
-			int readvalue = client->ReadValue("ns=2;i=2006;");
+			int readvalue = client->ReadValue("ns=2;i=2008;");
 			sendResponse("encoder_val", hdl, readvalue, "_encoder", "warehouse");
 		}
 		

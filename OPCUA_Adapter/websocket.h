@@ -39,13 +39,20 @@ public:
 	// Send a response to the AMS after processing stimilus
 	// Send a label message to the AMS after processing stimilus
 	void sendStimulus(AMSMessage message, websocketpp::connection_hdl hdl);
-	void announce(std::string label_name, AMSAnnouncement* announcement, std::string parameter_name, AMSLabeltype type, std::string channel);
-	void sendResponse(std::string labelname, websocketpp::connection_hdl hdl, int currentvalue, std::string parameter_name, std::string channel);
+	void announce(std::string label_name, AMSAnnouncement* announcement, std::string parameter_name, std::string parameter_type, AMSLabeltype type, std::string channel);
+	void announce(std::string label_name, AMSAnnouncement* announcement, AMSLabeltype type, std::string channel);
+	void sendResponse(std::string labelname, websocketpp::connection_hdl hdl, float currentvalue, std::string parameter_name, std::string parameter_type, std::string channel);
+	void sendResponse(std::string labelname, websocketpp::connection_hdl hdl, std::string channel);
 private:
 	client c;
-	ClientGenerator* client= new ClientGenerator("opc.tcp://192.168.7.2:4840/digitaltwin/cantilever");
+	//ClientGenerator* client= new ClientGenerator("opc.tcp://192.168.7.2:4840/digitaltwin/cantilever");
+	ClientGenerator* client = new ClientGenerator("opc.tcp://localhost:4840/freeopcua/server");
 	//ClientGenerator* client2 = new ClientGenerator("opc.tcp://192.168.1.105:4840/digitaltwin/cantilever");
 	static context_ptr on_tls_init();
+	std::string s1 = "2storage1";
+	std::string s2 = "2storage2";
+	std::string s3 = "2storage3";
+	std::string s4 = "2conveyor";
 
 };
 #endif

@@ -1,36 +1,62 @@
 #include "websocket.h"
 
 
-void AxiniConnection::announce(std::string label_name, AMSAnnouncement* announcement, std::string parameter_name, AMSLabeltype type, std::string channel) {
+void AxiniConnection::announce(std::string label_name, AMSAnnouncement* announcement, std::string parameter_name, std::string parameter_type, AMSLabeltype type, std::string channel) {
 	AMSLabel* label = new AMSLabel();
 	label = announcement->add_labels();
 	label->set_label(label_name);
 	label->set_type(type);
 	label->set_channel(channel);
-	if (!parameter_name.empty()) {
-		AMSLabelParameter* parameter = new AMSLabelParameter();
-		AMSLabelParameterValue* value = new AMSLabelParameterValue();
-		parameter = label->add_parameters();
-		value->set_integer(0);
-		parameter->set_allocated_value(value);
-		parameter->set_name(parameter_name);
+	AMSLabelParameter* parameter = new AMSLabelParameter();
+	AMSLabelParameterValue* value = new AMSLabelParameterValue();
+	parameter = label->add_parameters();
+	if (parameter_type == "decimal") {
+		value->set_decimal(0.0);
 	}
+	else {
+		value->set_integer(0);
+	}
+
+	parameter->set_allocated_value(value);
+	parameter->set_name(parameter_name);
+
+}
+
+void AxiniConnection::announce(std::string label_name, AMSAnnouncement* announcement, AMSLabeltype type, std::string channel) {
+	AMSLabel* label = new AMSLabel();
+	label = announcement->add_labels();
+	label->set_label(label_name);
+	label->set_type(type);
+	label->set_channel(channel);
 }
 
 
-void AxiniConnection::sendResponse(std::string labelname, websocketpp::connection_hdl hdl, int currentvalue, std::string parameter_name, std::string channel) {
+
+void AxiniConnection::sendResponse(std::string labelname, websocketpp::connection_hdl hdl, float currentvalue, std::string parameter_name, std::string parameter_type, std::string channel) {
 	AMSLabel* label = new AMSLabel();
 	label->set_label(labelname);
 	label->set_type(AMSLabeltype::Label_LabelType_RESPONSE);
 	label->set_channel(channel);
-	if (!parameter_name.empty()) {
-		AMSLabelParameter* parameter = new AMSLabelParameter();
-		AMSLabelParameterValue* value = new AMSLabelParameterValue();
-		parameter = label->add_parameters();
-		value->set_integer(currentvalue);
-		parameter->set_allocated_value(value);
-		parameter->set_name(parameter_name);
-	}
+	AMSLabelParameter* parameter = new AMSLabelParameter();
+	AMSLabelParameterValue* value = new AMSLabelParameterValue();
+	parameter = label->add_parameters();
+	value->set_decimal(currentvalue);
+	parameter->set_allocated_value(value);
+	parameter->set_name(parameter_name);
+	AMSMessage message;
+	std::ostringstream labelstream;
+	std::string msg;
+	message.set_allocated_label(label);
+	message.SerializeToOstream(&labelstream);
+	msg = labelstream.str();
+	c.send(hdl, msg, websocketpp::frame::opcode::BINARY);
+}
+
+void AxiniConnection::sendResponse(std::string labelname, websocketpp::connection_hdl hdl, std::string channel) {
+	AMSLabel* label = new AMSLabel();
+	label->set_label(labelname);
+	label->set_type(AMSLabeltype::Label_LabelType_RESPONSE);
+	label->set_channel(channel);
 	AMSMessage message;
 	std::ostringstream labelstream;
 	std::string msg;
@@ -50,6 +76,7 @@ void AxiniConnection::sendStimulus(AMSMessage message, websocketpp::connection_h
 	c.send(hdl, msg, websocketpp::frame::opcode::BINARY);
 }
 
+
 void AxiniConnection::on_open(websocketpp::connection_hdl hdl) {
 	std::cout << "Opening socket connection with AMS ... " << std::endl;
 
@@ -59,22 +86,24 @@ void AxiniConnection::on_open(websocketpp::connection_hdl hdl) {
 	AMSAnnouncement* announcement = new AMSAnnouncement();
 	announcement->set_name("xuanying@ICT");
 	// add labels to the announcement 
-
-	announce("go_x", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
-	announce("go_y", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
-	announce("go_z", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
-	announce("go_conveyor", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
-	announce("up", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
-	announce("down", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
-	announce("read_encoder", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
-	announce("stop", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
-	//announce("read_gpio", announcement, "", AMSLabeltype::Label_LabelType_STIMULUS, "warehouse");
-
-
-	announce("encoder_val", announcement, "_encoder", AMSLabeltype::Label_LabelType_RESPONSE, "warehouse");
-	announce("wait_for_3s", announcement, "", AMSLabeltype::Label_LabelType_RESPONSE, "warehouse");
-	announce("positioned", announcement, "", AMSLabeltype::Label_LabelType_RESPONSE, "warehouse");
-	//announce("gpio_val", announcement, "_gpio", AMSLabeltype::Label_LabelType_RESPONSE, "warehouse");
+	// stimuli
+	announce("home2storage1", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
+	announce("home2storage2", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
+	announce("home2storage3", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
+	announce("coveyor2storage1", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
+	announce("coveyor2storage2", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
+	announce("coveyor2storage3", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
+	announce("storage12conveyor", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
+	announce("storage12storage2", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
+	announce("storage12storage3", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
+	announce("storage22conveyor", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
+	announce("storage22storage1", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
+	announce("storage22storage3", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
+	announce("storage32conveyor", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
+	announce("storage32storage2", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
+	announce("storage32storage1", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
+	// response
+	announce("is_positioned", announcement, "_timediff", "decimal", AMSLabeltype::Label_LabelType_RESPONSE, "horizontal_controller");
 	// sending the announcement
 	AMSMessage message;
 	message.set_allocated_announcement(announcement);
@@ -123,23 +152,38 @@ void AxiniConnection::on_message(websocketpp::connection_hdl hdl, message_ptr ms
 		sendStimulus(message, hdl);
 		std::cout << "Received Stimulus: " << message.label().label() << std::endl;
 		std::string stimulus = message.label().label();
-		if (stimulus == "down") {
-			client->WriteValue("ns=2;i=2002;", 1);
+		//2storage1
+		if (stimulus.find(s1) != std::string::npos) {
+			client->WriteValue("ns=2;i=2005;", -375);
+			/*while (client->ReadValue("ns=2;i=2002;") != 1) {
+			}*/
+			std::this_thread::sleep_for(std::chrono::seconds(15));
+			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
 		}
-		else if (stimulus == "up") {
-			client->WriteValue("ns=2;i=2002;", -1);
-		}
-
-		else if (stimulus == "stop") {
-			client->WriteValue("ns=2;i=2002;", 0);
-		}
-		else if(stimulus == "read_encoder"){
-			int readvalue = client->ReadValue("ns=2;i=2008;");
-			sendResponse("encoder_val", hdl, readvalue, "_encoder", "warehouse");
-		}
-		
-
-
+		//2storage2
+		else if (stimulus.find(s2) != std::string::npos) {
+			client->WriteValue("ns=2;i=2005;", -650);
+			/*while (client->ReadValue("ns=2;i=2002;") != 1) {
+			}*/
+			std::this_thread::sleep_for(std::chrono::seconds(15));
+			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
+			}
+		//2storage3
+		else if (stimulus.find(s3) != std::string::npos) {
+			client->WriteValue("ns=2;i=2005;", -940);
+			/*while (client->ReadValue("ns=2;i=2002;") != 1) {
+			}*/
+			std::this_thread::sleep_for(std::chrono::seconds(15));
+			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
+			}
+		//2conveyor
+		else if (stimulus.find(s4) != std::string::npos) {
+			client->WriteValue("ns=2;i=2005;", -30);
+			/*while (client->ReadValue("ns=2;i=2002;") != 1) {
+			}*/
+			std::this_thread::sleep_for(std::chrono::seconds(15));
+			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
+			}
 	}
 	if (message.has_reset()) {
 		AMSMessage* readyMessage = new AMSMessage();
@@ -177,6 +221,7 @@ AxiniConnection::AxiniConnection(std::string uri, std::string AccessToken) {
 		// this will cause a single connection to be made to the server. c.run()
 		// will exit when this connection is closed.
 		c.run();
+		client->client_root->Disconnect();
 		std::cout << "Connection closed " << std::endl;
 	}
 	catch (websocketpp::exception const& e) {

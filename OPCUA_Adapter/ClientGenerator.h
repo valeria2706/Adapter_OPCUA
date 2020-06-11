@@ -24,10 +24,10 @@ public:
 	std::unique_ptr<UaClient> client_root;
 	ClientGenerator();
 	ClientGenerator(std::string endpoint);
-	~ClientGenerator();
 
 	int ReadValue(const std::string&);
 	void WriteValue(const std::string&, const Variant&);
+	
 };
 
 

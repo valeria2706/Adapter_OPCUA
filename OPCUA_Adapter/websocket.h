@@ -49,11 +49,10 @@ private:
 	ClientGenerator* client = new ClientGenerator("opc.tcp://localhost:4840/freeopcua/server");
 	//ClientGenerator* client2 = new ClientGenerator("opc.tcp://192.168.1.105:4840/digitaltwin/cantilever");
 	static context_ptr on_tls_init();
-	std::string s1 = "2sorter";
-	std::string s2 = "2max";
-	std::string s3 = "2oven";
+	std::string s1 = "2storage1";
+	std::string s2 = "2storage2";
+	std::string s3 = "2storage3";
 	std::string s4 = "2conveyor";
-	std::string s5 = "2home";
 
 };
 #endif

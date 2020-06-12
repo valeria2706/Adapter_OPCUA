@@ -87,23 +87,19 @@ void AxiniConnection::on_open(websocketpp::connection_hdl hdl) {
 	announcement->set_name("xuanying@ICT");
 	// add labels to the announcement 
 	// stimuli
-	announce("home2storage1", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
-	announce("home2storage2", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
-	announce("home2storage3", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
-	announce("coveyor2storage1", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
-	announce("coveyor2storage2", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
-	announce("coveyor2storage3", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
-	announce("storage12conveyor", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
-	announce("storage12storage2", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
-	announce("storage12storage3", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
-	announce("storage22conveyor", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
-	announce("storage22storage1", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
-	announce("storage22storage3", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
-	announce("storage32conveyor", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
-	announce("storage32storage2", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
-	announce("storage32storage1", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
+	announce("home2conveyor", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "vertical_controller");
+	announce("home2sorter", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "vertical_controller");
+	announce("home2max", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "vertical_controller");
+	announce("conveyor2oven", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "vertical_controller");
+	announce("coveyor2sorter", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "vertical_controller");
+	announce("coveyor2home", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "vertical_controller");
+	announce("oven2conveyor", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "vertical_controller");
+	announce("oven2home", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "vertical_controller");
+	announce("sorter2conveyor", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "vertical_controller");
+	announce("max2home", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "vertical_controller");
+	
 	// response
-	announce("is_positioned", announcement, "_timediff", "decimal", AMSLabeltype::Label_LabelType_RESPONSE, "horizontal_controller");
+	announce("is_positioned", announcement, "_timediff", "decimal", AMSLabeltype::Label_LabelType_RESPONSE, "vertical_controller");
 	// sending the announcement
 	AMSMessage message;
 	message.set_allocated_announcement(announcement);
@@ -152,38 +148,45 @@ void AxiniConnection::on_message(websocketpp::connection_hdl hdl, message_ptr ms
 		sendStimulus(message, hdl);
 		std::cout << "Received Stimulus: " << message.label().label() << std::endl;
 		std::string stimulus = message.label().label();
-		//2storage1
+		//2sorter
 		if (stimulus.find(s1) != std::string::npos) {
 			client->WriteValue("ns=2;i=2005;", -375);
 			/*while (client->ReadValue("ns=2;i=2002;") != 1) {
 			}*/
-			std::this_thread::sleep_for(std::chrono::seconds(15));
-			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
+			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "vertical_controller");
 		}
-		//2storage2
+		//2max
 		else if (stimulus.find(s2) != std::string::npos) {
 			client->WriteValue("ns=2;i=2005;", -650);
 			/*while (client->ReadValue("ns=2;i=2002;") != 1) {
 			}*/
-			std::this_thread::sleep_for(std::chrono::seconds(15));
-			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
+			
+			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "vertical_controller");
 			}
-		//2storage3
+		//2oven
 		else if (stimulus.find(s3) != std::string::npos) {
 			client->WriteValue("ns=2;i=2005;", -940);
 			/*while (client->ReadValue("ns=2;i=2002;") != 1) {
 			}*/
-			std::this_thread::sleep_for(std::chrono::seconds(15));
-			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
+			
+			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "vertical_controller");
 			}
 		//2conveyor
 		else if (stimulus.find(s4) != std::string::npos) {
 			client->WriteValue("ns=2;i=2005;", -30);
 			/*while (client->ReadValue("ns=2;i=2002;") != 1) {
 			}*/
-			std::this_thread::sleep_for(std::chrono::seconds(15));
-			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
+			
+			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "vertical_controller");
 			}
+		//2home
+		else if (stimulus.find(s5) != std::string::npos) {
+			client->WriteValue("ns=2;i=2005;", -30);
+			/*while (client->ReadValue("ns=2;i=2002;") != 1) {
+			}*/
+			
+			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "vertical_controller");
+		}
 	}
 	if (message.has_reset()) {
 		AMSMessage* readyMessage = new AMSMessage();

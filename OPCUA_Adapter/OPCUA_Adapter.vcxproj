@@ -130,6 +130,7 @@
     <ClCompile Include="..\protobuf_axini\message.pb.cc" />
     <ClCompile Include="ClientGenerator.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ServerGenerator.cpp" />
     <ClCompile Include="websocket.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +140,7 @@
     <ClInclude Include="..\protobuf_axini\label.pb.h" />
     <ClInclude Include="..\protobuf_axini\message.pb.h" />
     <ClInclude Include="ClientGenerator.h" />
+    <ClInclude Include="ServerGenerator.h" />
     <ClInclude Include="websocket.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

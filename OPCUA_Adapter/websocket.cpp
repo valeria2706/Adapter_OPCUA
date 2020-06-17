@@ -86,7 +86,7 @@ void AxiniConnection::on_open(websocketpp::connection_hdl hdl) {
 	AMSAnnouncement* announcement = new AMSAnnouncement();
 	announcement->set_name("xuanying@ICT");
 	// add labels to the announcement 
-	// stimuli
+	// horizontal stimuli
 	announce("home2storage1", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
 	announce("home2storage2", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
 	announce("home2storage3", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
@@ -102,8 +102,11 @@ void AxiniConnection::on_open(websocketpp::connection_hdl hdl) {
 	announce("storage32conveyor", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
 	announce("storage32storage2", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
 	announce("storage32storage1", announcement, AMSLabeltype::Label_LabelType_STIMULUS, "horizontal_controller");
+	
 	// response
 	announce("is_positioned", announcement, "_timediff", "decimal", AMSLabeltype::Label_LabelType_RESPONSE, "horizontal_controller");
+	// vertical response
+	announce("vis_positioned", announcement, "_timediff", "decimal", AMSLabeltype::Label_LabelType_RESPONSE, "horizontal_controller");
 	// sending the announcement
 	AMSMessage message;
 	message.set_allocated_announcement(announcement);
@@ -150,40 +153,56 @@ void AxiniConnection::on_message(websocketpp::connection_hdl hdl, message_ptr ms
 	}
 	if (message.has_label()) {
 		sendStimulus(message, hdl);
-		std::cout << "Received Stimulus: " << message.label().label() << std::endl;
+		std::string channel = message.label().channel();
 		std::string stimulus = message.label().label();
+		std::cout << "Received Stimulus: " << stimulus << " from channel " << channel << std::endl;
+		
 		//2storage1
 		if (stimulus.find(s1) != std::string::npos) {
-			client->WriteValue("ns=2;i=2005;", -375);
-			/*while (client->ReadValue("ns=2;i=2002;") != 1) {
+			server->serverWrite("ns=2;i=2005;", -375);
+			/*while (server->ReadValue("ns=2;i=2002;") != 1) {
 			}*/
+			server->serverWrite("ns=2;i=2011;", -100);
 			std::this_thread::sleep_for(std::chrono::seconds(15));
+			sendResponse("vis_positioned", hdl, 0.35, "_timediff", "decimal", "horizontal_controller");
 			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
+			
 		}
 		//2storage2
 		else if (stimulus.find(s2) != std::string::npos) {
-			client->WriteValue("ns=2;i=2005;", -650);
-			/*while (client->ReadValue("ns=2;i=2002;") != 1) {
+			server->serverWrite("ns=2;i=2005;", -650);
+			server->serverWrite("ns=2;i=2011;", -280);
+			/*while (server->ReadValue("ns=2;i=2002;") != 1) {
 			}*/
 			std::this_thread::sleep_for(std::chrono::seconds(15));
+			sendResponse("vis_positioned", hdl, 0.35, "_timediff", "decimal", "horizontal_controller");
 			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
-			}
+			
+		}
 		//2storage3
 		else if (stimulus.find(s3) != std::string::npos) {
-			client->WriteValue("ns=2;i=2005;", -940);
-			/*while (client->ReadValue("ns=2;i=2002;") != 1) {
+			server->serverWrite("ns=2;i=2005;", -940);
+			server->serverWrite("ns=2;i=2011;", -480);
+			/*while (server->ReadValue("ns=2;i=2002;") != 1) {
 			}*/
 			std::this_thread::sleep_for(std::chrono::seconds(15));
+			sendResponse("vis_positioned", hdl, 0.35, "_timediff", "decimal", "horizontal_controller");
 			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
-			}
+			
+		}
 		//2conveyor
 		else if (stimulus.find(s4) != std::string::npos) {
-			client->WriteValue("ns=2;i=2005;", -30);
-			/*while (client->ReadValue("ns=2;i=2002;") != 1) {
+			server->serverWrite("ns=2;i=2005;", -30);
+			server->serverWrite("ns=2;i=2011;", -380);
+			/*while (server->ReadValue("ns=2;i=2002;") != 1) {
 			}*/
 			std::this_thread::sleep_for(std::chrono::seconds(15));
+			sendResponse("vis_positioned", hdl, 0.35, "_timediff", "decimal", "horizontal_controller");
 			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
-			}
+			
+		}
+		
+		
 	}
 	if (message.has_reset()) {
 		AMSMessage* readyMessage = new AMSMessage();
@@ -221,7 +240,7 @@ AxiniConnection::AxiniConnection(std::string uri, std::string AccessToken) {
 		// this will cause a single connection to be made to the server. c.run()
 		// will exit when this connection is closed.
 		c.run();
-		client->client_root->Disconnect();
+		server->serverStop();
 		std::cout << "Connection closed " << std::endl;
 	}
 	catch (websocketpp::exception const& e) {

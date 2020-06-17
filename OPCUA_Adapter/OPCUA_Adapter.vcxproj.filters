@@ -39,6 +39,9 @@
     <ClCompile Include="..\protobuf_axini\message.pb.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ServerGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="websocket.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\protobuf_axini\message.pb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

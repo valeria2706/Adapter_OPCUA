@@ -8,7 +8,7 @@
 #include "configuration.pb.h"
 #include "message.pb.h"
 #include "label.pb.h"
-#include "ClientGenerator.h"
+#include "ServerGenerator.h"
 #include <iostream>
 
 
@@ -45,9 +45,9 @@ public:
 	void sendResponse(std::string labelname, websocketpp::connection_hdl hdl, std::string channel);
 private:
 	client c;
-	//ClientGenerator* client= new ClientGenerator("opc.tcp://192.168.7.2:4840/digitaltwin/cantilever");
-	ClientGenerator* client = new ClientGenerator("opc.tcp://localhost:4840/freeopcua/server");
-	//ClientGenerator* client2 = new ClientGenerator("opc.tcp://192.168.1.105:4840/digitaltwin/cantilever");
+	//ServerGenerator* client= new ServerGenerator("opc.tcp://192.168.7.2:4840/digitaltwin/cantilever");
+	ServerGenerator* server = new ServerGenerator("opc.tcp://localhost:4840/freeopcua/server");
+	//ServerGenerator* client2 = new ServerGenerator("opc.tcp://192.168.1.105:4840/digitaltwin/cantilever");
 	static context_ptr on_tls_init();
 	std::string s1 = "2storage1";
 	std::string s2 = "2storage2";

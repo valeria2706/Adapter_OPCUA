@@ -52,7 +52,8 @@ private:
 	std::string s1 = "2storage1";
 	std::string s2 = "2storage2";
 	std::string s3 = "2storage3";
-	std::string s4 = "2conveyor";
+	std::string s4 = "2max";
+	std::string s5 = "2home";
 
 };
 #endif

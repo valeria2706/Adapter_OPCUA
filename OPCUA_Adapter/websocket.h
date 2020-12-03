@@ -43,10 +43,12 @@ public:
 	void announce(std::string label_name, AMSAnnouncement* announcement, AMSLabeltype type, std::string channel);
 	void sendResponse(std::string labelname, websocketpp::connection_hdl hdl, float currentvalue, std::string parameter_name, std::string parameter_type, std::string channel);
 	void sendResponse(std::string labelname, websocketpp::connection_hdl hdl, std::string channel);
+	std::string prev_msg = "home2";
+	
 private:
 	client c;
 	//ServerGenerator* client= new ServerGenerator("opc.tcp://192.168.7.2:4840/digitaltwin/cantilever");
-	ServerGenerator* server = new ServerGenerator("opc.tcp://localhost:4840/freeopcua/server");
+	ServerGenerator* server = new ServerGenerator("opc.tcp://127.0.0.1:4841/freeopcua/server");
 	//ServerGenerator* client2 = new ServerGenerator("opc.tcp://192.168.1.105:4840/digitaltwin/cantilever");
 	static context_ptr on_tls_init();
 	std::string s1 = "2storage1";
@@ -54,6 +56,5 @@ private:
 	std::string s3 = "2storage3";
 	std::string s4 = "2max";
 	std::string s5 = "2home";
-
 };
 #endif

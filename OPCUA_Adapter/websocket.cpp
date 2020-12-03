@@ -107,7 +107,6 @@ void AxiniConnection::on_open(websocketpp::connection_hdl hdl) {
 	// response
 	announce("is_positioned", announcement, "_timediff", "decimal", AMSLabeltype::Label_LabelType_RESPONSE, "horizontal_controller");
 	// vertical response
-	
 	// sending the announcement
 	AMSMessage message;
 	message.set_allocated_announcement(announcement);
@@ -116,6 +115,7 @@ void AxiniConnection::on_open(websocketpp::connection_hdl hdl) {
 	std::cout << "Sending announcement message to AMS." << std::endl;
 	c.send(hdl, msg, websocketpp::frame::opcode::BINARY);
 	std::cout << "Socket connection with AMS succesfully opened." << std::endl;
+	std::string prev_msg = "home2";
 }
 context_ptr AxiniConnection::on_tls_init() {
 	// establishes a SSL connection
@@ -156,62 +156,77 @@ void AxiniConnection::on_message(websocketpp::connection_hdl hdl, message_ptr ms
 		std::string channel = message.label().channel();
 		std::string stimulus = message.label().label();
 		std::cout << "Received Stimulus: " << stimulus << " from channel " << channel << std::endl;
-		
-		//2storage1
-		if (stimulus.find(s1) != std::string::npos) {
-			server->serverWrite("ns=2;i=2005;", -375);
-			/*while (server->ReadValue("ns=2;i=2002;") != 1) {
-			}*/
-			server->serverWrite("ns=2;i=2011;", -100);
-			//std::this_thread::sleep_for(std::chrono::seconds(15));
-	
-			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
-			
-		}
-		//2storage2
-		else if (stimulus.find(s2) != std::string::npos) {
-			server->serverWrite("ns=2;i=2005;", -650);
-			server->serverWrite("ns=2;i=2011;", -280);
-			/*while (server->ReadValue("ns=2;i=2002;") != 1) {
-			}*/
-			//std::this_thread::sleep_for(std::chrono::seconds(15));
-			
-			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
-			
-		}
-		//2storage3
-		else if (stimulus.find(s3) != std::string::npos) {
-			server->serverWrite("ns=2;i=2005;", -940);
-			server->serverWrite("ns=2;i=2011;", -480);
-			/*while (server->ReadValue("ns=2;i=2002;") != 1) {
-			}*/
-			//std::this_thread::sleep_for(std::chrono::seconds(15));
-			
-			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
-			
-		}
-		//2conveyor
-		else if (stimulus.find(s4) != std::string::npos) {
-			server->serverWrite("ns=2;i=2005;", -30);
-			server->serverWrite("ns=2;i=2011;", -380);
-			/*while (server->ReadValue("ns=2;i=2002;") != 1) {
-			}*/
-			//std::this_thread::sleep_for(std::chrono::seconds(15));
-			
-			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
+		if (stimulus.find(prev_msg) != std::string::npos) {
+			//2storage1
+			if (stimulus.find(s1) != std::string::npos) {
+				server->serverWrite("ns=2;i=2005;", -375);
+				/*while (server->ReadValue("ns=2;i=2002;") != 1) {
+				}*/
+				server->serverWrite("ns=2;i=2011;", -100);
+				//std::this_thread::sleep_for(std::chrono::seconds(15));
+				prev_msg = "storage12";
+				sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
+
+			}
+			//2storage2
+			else if (stimulus.find(s2) != std::string::npos) {
+				server->serverWrite("ns=2;i=2005;", -650);
+				server->serverWrite("ns=2;i=2011;", -280);
+				/*while (server->ReadValue("ns=2;i=2002;") != 1) {
+				}*/
+				//std::this_thread::sleep_for(std::chrono::seconds(15));
+				prev_msg = "storage22";
+				sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
+
+			}
+			//2storage3
+			else if (stimulus.find(s3) != std::string::npos) {
+				server->serverWrite("ns=2;i=2005;", -940);
+				server->serverWrite("ns=2;i=2011;", -480);
+				/*while (server->ReadValue("ns=2;i=2002;") != 1) {
+				}*/
+				//std::this_thread::sleep_for(std::chrono::seconds(15));
+				prev_msg = "storage32";
+				sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
+
+			}
+			//2conveyor
+			else if (stimulus.find(s4) != std::string::npos) {
+				server->serverWrite("ns=2;i=2005;", -30);
+				server->serverWrite("ns=2;i=2011;", -380);
+				/*while (server->ReadValue("ns=2;i=2002;") != 1) {
+				}*/
+				//std::this_thread::sleep_for(std::chrono::seconds(15));
+				prev_msg = "max2";
+				sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
+
+			}
+
+			else if (stimulus.find(s5) != std::string::npos) {
+				server->serverWrite("ns=2;i=2005;", -30);
+				server->serverWrite("ns=2;i=2011;", -380);
+				/*while (server->ReadValue("ns=2;i=2002;") != 1) {
+				}*/
+				//std::this_thread::sleep_for(std::chrono::seconds(15));
+				prev_msg = "home2";
+				sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
+
+			}
 			
 		}
 
-		else if (stimulus.find(s5) != std::string::npos) {
-			server->serverWrite("ns=2;i=2005;", -30);
-			server->serverWrite("ns=2;i=2011;", -380);
-			/*while (server->ReadValue("ns=2;i=2002;") != 1) {
-			}*/
-			//std::this_thread::sleep_for(std::chrono::seconds(15));
-
-			sendResponse("is_positioned", hdl, 0.25, "_timediff", "decimal", "horizontal_controller");
+		else {
 
 		}
+
+
+
+
+
+
+
+
+
 		
 		
 	}
@@ -224,6 +239,7 @@ void AxiniConnection::on_message(websocketpp::connection_hdl hdl, message_ptr ms
 		stringmessage = readystream.str();
 		c.send(hdl, stringmessage, websocketpp::frame::opcode::BINARY);
 		std::cout << "Reset received" << std::endl;
+		prev_msg = "home2";
 	}
 }
 AxiniConnection::AxiniConnection(std::string uri, std::string AccessToken) {

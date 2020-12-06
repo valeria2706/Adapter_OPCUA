@@ -33,14 +33,6 @@ class Label_Parameter_Value_HashDefaultTypeInternal {
 class Label_Parameter_ValueDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Label_Parameter_Value> _instance;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr string_;
-  ::PROTOBUF_NAMESPACE_ID::int64 integer_;
-  double decimal_;
-  bool boolean_;
-  ::PROTOBUF_NAMESPACE_ID::uint64 date_;
-  const ::PluginAdapter::Api::Label_Parameter_Value_Array* array_;
-  const ::PluginAdapter::Api::Label_Parameter_Value_Hash* struct__;
-  const ::PluginAdapter::Api::Label_Parameter_Value_Hash* hash_value_;
 } _Label_Parameter_Value_default_instance_;
 class Label_ParameterDefaultTypeInternal {
  public:
@@ -60,7 +52,6 @@ static void InitDefaultsscc_info_Label_label_2eproto() {
     new (ptr) ::PluginAdapter::Api::Label();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::PluginAdapter::Api::Label::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Label_label_2eproto =
@@ -75,7 +66,6 @@ static void InitDefaultsscc_info_Label_Parameter_label_2eproto() {
     new (ptr) ::PluginAdapter::Api::Label_Parameter();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::PluginAdapter::Api::Label_Parameter::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Label_Parameter_label_2eproto =
@@ -105,10 +95,6 @@ static void InitDefaultsscc_info_Label_Parameter_Value_label_2eproto() {
     new (ptr) ::PluginAdapter::Api::Label_Parameter_Value();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::PluginAdapter::Api::Label_Parameter_Value_Array::InitAsDefaultInstance();
-  ::PluginAdapter::Api::Label_Parameter_Value_Hash_Entry::InitAsDefaultInstance();
-  ::PluginAdapter::Api::Label_Parameter_Value_Hash::InitAsDefaultInstance();
-  ::PluginAdapter::Api::Label_Parameter_Value::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Label_Parameter_Value_label_2eproto =
@@ -143,14 +129,14 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_label_2eproto::offsets[] PROTO
   ~0u,  // no _extensions_
   PROTOBUF_FIELD_OFFSET(::PluginAdapter::Api::Label_Parameter_Value, _oneof_case_[0]),
   ~0u,  // no _weak_field_map_
-  offsetof(::PluginAdapter::Api::Label_Parameter_ValueDefaultTypeInternal, string_),
-  offsetof(::PluginAdapter::Api::Label_Parameter_ValueDefaultTypeInternal, integer_),
-  offsetof(::PluginAdapter::Api::Label_Parameter_ValueDefaultTypeInternal, decimal_),
-  offsetof(::PluginAdapter::Api::Label_Parameter_ValueDefaultTypeInternal, boolean_),
-  offsetof(::PluginAdapter::Api::Label_Parameter_ValueDefaultTypeInternal, date_),
-  offsetof(::PluginAdapter::Api::Label_Parameter_ValueDefaultTypeInternal, array_),
-  offsetof(::PluginAdapter::Api::Label_Parameter_ValueDefaultTypeInternal, struct__),
-  offsetof(::PluginAdapter::Api::Label_Parameter_ValueDefaultTypeInternal, hash_value_),
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::PluginAdapter::Api::Label_Parameter_Value, type_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::PluginAdapter::Api::Label_Parameter, _internal_metadata_),
@@ -224,16 +210,15 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_lab
   &scc_info_Label_Parameter_Value_label_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_label_2eproto_once;
-static bool descriptor_table_label_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_label_2eproto = {
-  &descriptor_table_label_2eproto_initialized, descriptor_table_protodef_label_2eproto, "label.proto", 956,
+  false, false, descriptor_table_protodef_label_2eproto, "label.proto", 956,
   &descriptor_table_label_2eproto_once, descriptor_table_label_2eproto_sccs, descriptor_table_label_2eproto_deps, 3, 0,
   schemas, file_default_instances, TableStruct_label_2eproto::offsets,
   file_level_metadata_label_2eproto, 6, file_level_enum_descriptors_label_2eproto, file_level_service_descriptors_label_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
-static bool dynamic_init_dummy_label_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_label_2eproto), true);
+static bool dynamic_init_dummy_label_2eproto = (static_cast<void>(::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_label_2eproto)), true);
 namespace PluginAdapter {
 namespace Api {
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Label_LabelType_descriptor() {
@@ -260,22 +245,21 @@ constexpr int Label::LabelType_ARRAYSIZE;
 
 // ===================================================================
 
-void Label_Parameter_Value_Array::InitAsDefaultInstance() {
-}
 class Label_Parameter_Value_Array::_Internal {
  public:
 };
 
-Label_Parameter_Value_Array::Label_Parameter_Value_Array()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Label_Parameter_Value_Array::Label_Parameter_Value_Array(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  values_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:PluginAdapter.Api.Label.Parameter.Value.Array)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:PluginAdapter.Api.Label.Parameter.Value.Array)
 }
 Label_Parameter_Value_Array::Label_Parameter_Value_Array(const Label_Parameter_Value_Array& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr),
       values_(from.values_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:PluginAdapter.Api.Label.Parameter.Value.Array)
 }
 
@@ -286,11 +270,19 @@ void Label_Parameter_Value_Array::SharedCtor() {
 Label_Parameter_Value_Array::~Label_Parameter_Value_Array() {
   // @@protoc_insertion_point(destructor:PluginAdapter.Api.Label.Parameter.Value.Array)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Label_Parameter_Value_Array::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Label_Parameter_Value_Array::ArenaDtor(void* object) {
+  Label_Parameter_Value_Array* _this = reinterpret_cast< Label_Parameter_Value_Array* >(object);
+  (void)_this;
+}
+void Label_Parameter_Value_Array::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Label_Parameter_Value_Array::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
@@ -307,7 +299,7 @@ void Label_Parameter_Value_Array::Clear() {
   (void) cached_has_bits;
 
   values_.Clear();
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Label_Parameter_Value_Array::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -335,7 +327,9 @@ const char* Label_Parameter_Value_Array::_InternalParse(const char* ptr, ::PROTO
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -349,7 +343,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Label_Parameter_Value_Array::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* Label_Parameter_Value_Array::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:PluginAdapter.Api.Label.Parameter.Value.Array)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -358,14 +352,14 @@ failure:
   // repeated .PluginAdapter.Api.Label.Parameter.Value values = 1;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->_internal_values_size()); i < n; i++) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(1, this->_internal_values(i), target, stream);
+      InternalWriteMessage(1, this->_internal_values(i), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:PluginAdapter.Api.Label.Parameter.Value.Array)
   return target;
@@ -413,7 +407,7 @@ void Label_Parameter_Value_Array::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Messa
 void Label_Parameter_Value_Array::MergeFrom(const Label_Parameter_Value_Array& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:PluginAdapter.Api.Label.Parameter.Value.Array)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -440,7 +434,7 @@ bool Label_Parameter_Value_Array::IsInitialized() const {
 
 void Label_Parameter_Value_Array::InternalSwap(Label_Parameter_Value_Array* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   values_.InternalSwap(&other->values_);
 }
 
@@ -451,12 +445,6 @@ void Label_Parameter_Value_Array::InternalSwap(Label_Parameter_Value_Array* othe
 
 // ===================================================================
 
-void Label_Parameter_Value_Hash_Entry::InitAsDefaultInstance() {
-  ::PluginAdapter::Api::_Label_Parameter_Value_Hash_Entry_default_instance_._instance.get_mutable()->key_ = const_cast< ::PluginAdapter::Api::Label_Parameter_Value*>(
-      ::PluginAdapter::Api::Label_Parameter_Value::internal_default_instance());
-  ::PluginAdapter::Api::_Label_Parameter_Value_Hash_Entry_default_instance_._instance.get_mutable()->value_ = const_cast< ::PluginAdapter::Api::Label_Parameter_Value*>(
-      ::PluginAdapter::Api::Label_Parameter_Value::internal_default_instance());
-}
 class Label_Parameter_Value_Hash_Entry::_Internal {
  public:
   static const ::PluginAdapter::Api::Label_Parameter_Value& key(const Label_Parameter_Value_Hash_Entry* msg);
@@ -471,15 +459,15 @@ const ::PluginAdapter::Api::Label_Parameter_Value&
 Label_Parameter_Value_Hash_Entry::_Internal::value(const Label_Parameter_Value_Hash_Entry* msg) {
   return *msg->value_;
 }
-Label_Parameter_Value_Hash_Entry::Label_Parameter_Value_Hash_Entry()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Label_Parameter_Value_Hash_Entry::Label_Parameter_Value_Hash_Entry(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:PluginAdapter.Api.Label.Parameter.Value.Hash.Entry)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:PluginAdapter.Api.Label.Parameter.Value.Hash.Entry)
 }
 Label_Parameter_Value_Hash_Entry::Label_Parameter_Value_Hash_Entry(const Label_Parameter_Value_Hash_Entry& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_key()) {
     key_ = new ::PluginAdapter::Api::Label_Parameter_Value(*from.key_);
   } else {
@@ -495,21 +483,30 @@ Label_Parameter_Value_Hash_Entry::Label_Parameter_Value_Hash_Entry(const Label_P
 
 void Label_Parameter_Value_Hash_Entry::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Label_Parameter_Value_label_2eproto.base);
-  ::memset(&key_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&value_) -
+  ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+      reinterpret_cast<char*>(&key_) - reinterpret_cast<char*>(this)),
+      0, static_cast<size_t>(reinterpret_cast<char*>(&value_) -
       reinterpret_cast<char*>(&key_)) + sizeof(value_));
 }
 
 Label_Parameter_Value_Hash_Entry::~Label_Parameter_Value_Hash_Entry() {
   // @@protoc_insertion_point(destructor:PluginAdapter.Api.Label.Parameter.Value.Hash.Entry)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Label_Parameter_Value_Hash_Entry::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (this != internal_default_instance()) delete key_;
   if (this != internal_default_instance()) delete value_;
 }
 
+void Label_Parameter_Value_Hash_Entry::ArenaDtor(void* object) {
+  Label_Parameter_Value_Hash_Entry* _this = reinterpret_cast< Label_Parameter_Value_Hash_Entry* >(object);
+  (void)_this;
+}
+void Label_Parameter_Value_Hash_Entry::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Label_Parameter_Value_Hash_Entry::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
@@ -525,15 +522,15 @@ void Label_Parameter_Value_Hash_Entry::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaNoVirtual() == nullptr && key_ != nullptr) {
+  if (GetArena() == nullptr && key_ != nullptr) {
     delete key_;
   }
   key_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && value_ != nullptr) {
+  if (GetArena() == nullptr && value_ != nullptr) {
     delete value_;
   }
   value_ = nullptr;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Label_Parameter_Value_Hash_Entry::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -563,7 +560,9 @@ const char* Label_Parameter_Value_Hash_Entry::_InternalParse(const char* ptr, ::
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -577,7 +576,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Label_Parameter_Value_Hash_Entry::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* Label_Parameter_Value_Hash_Entry::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:PluginAdapter.Api.Label.Parameter.Value.Hash.Entry)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -585,23 +584,23 @@ failure:
 
   // .PluginAdapter.Api.Label.Parameter.Value key = 1;
   if (this->has_key()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         1, _Internal::key(this), target, stream);
   }
 
   // .PluginAdapter.Api.Label.Parameter.Value value = 2;
   if (this->has_value()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         2, _Internal::value(this), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:PluginAdapter.Api.Label.Parameter.Value.Hash.Entry)
   return target;
@@ -656,7 +655,7 @@ void Label_Parameter_Value_Hash_Entry::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::
 void Label_Parameter_Value_Hash_Entry::MergeFrom(const Label_Parameter_Value_Hash_Entry& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:PluginAdapter.Api.Label.Parameter.Value.Hash.Entry)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -688,9 +687,13 @@ bool Label_Parameter_Value_Hash_Entry::IsInitialized() const {
 
 void Label_Parameter_Value_Hash_Entry::InternalSwap(Label_Parameter_Value_Hash_Entry* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(key_, other->key_);
-  swap(value_, other->value_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Label_Parameter_Value_Hash_Entry, value_)
+      + sizeof(Label_Parameter_Value_Hash_Entry::value_)
+      - PROTOBUF_FIELD_OFFSET(Label_Parameter_Value_Hash_Entry, key_)>(
+          reinterpret_cast<char*>(&key_),
+          reinterpret_cast<char*>(&other->key_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Label_Parameter_Value_Hash_Entry::GetMetadata() const {
@@ -700,22 +703,21 @@ void Label_Parameter_Value_Hash_Entry::InternalSwap(Label_Parameter_Value_Hash_E
 
 // ===================================================================
 
-void Label_Parameter_Value_Hash::InitAsDefaultInstance() {
-}
 class Label_Parameter_Value_Hash::_Internal {
  public:
 };
 
-Label_Parameter_Value_Hash::Label_Parameter_Value_Hash()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Label_Parameter_Value_Hash::Label_Parameter_Value_Hash(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  entries_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:PluginAdapter.Api.Label.Parameter.Value.Hash)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:PluginAdapter.Api.Label.Parameter.Value.Hash)
 }
 Label_Parameter_Value_Hash::Label_Parameter_Value_Hash(const Label_Parameter_Value_Hash& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr),
       entries_(from.entries_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:PluginAdapter.Api.Label.Parameter.Value.Hash)
 }
 
@@ -726,11 +728,19 @@ void Label_Parameter_Value_Hash::SharedCtor() {
 Label_Parameter_Value_Hash::~Label_Parameter_Value_Hash() {
   // @@protoc_insertion_point(destructor:PluginAdapter.Api.Label.Parameter.Value.Hash)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Label_Parameter_Value_Hash::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Label_Parameter_Value_Hash::ArenaDtor(void* object) {
+  Label_Parameter_Value_Hash* _this = reinterpret_cast< Label_Parameter_Value_Hash* >(object);
+  (void)_this;
+}
+void Label_Parameter_Value_Hash::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Label_Parameter_Value_Hash::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
@@ -747,7 +757,7 @@ void Label_Parameter_Value_Hash::Clear() {
   (void) cached_has_bits;
 
   entries_.Clear();
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Label_Parameter_Value_Hash::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -775,7 +785,9 @@ const char* Label_Parameter_Value_Hash::_InternalParse(const char* ptr, ::PROTOB
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -789,7 +801,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Label_Parameter_Value_Hash::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* Label_Parameter_Value_Hash::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:PluginAdapter.Api.Label.Parameter.Value.Hash)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -798,14 +810,14 @@ failure:
   // repeated .PluginAdapter.Api.Label.Parameter.Value.Hash.Entry entries = 1;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->_internal_entries_size()); i < n; i++) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(1, this->_internal_entries(i), target, stream);
+      InternalWriteMessage(1, this->_internal_entries(i), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:PluginAdapter.Api.Label.Parameter.Value.Hash)
   return target;
@@ -853,7 +865,7 @@ void Label_Parameter_Value_Hash::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Messag
 void Label_Parameter_Value_Hash::MergeFrom(const Label_Parameter_Value_Hash& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:PluginAdapter.Api.Label.Parameter.Value.Hash)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -880,7 +892,7 @@ bool Label_Parameter_Value_Hash::IsInitialized() const {
 
 void Label_Parameter_Value_Hash::InternalSwap(Label_Parameter_Value_Hash* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   entries_.InternalSwap(&other->entries_);
 }
 
@@ -891,20 +903,6 @@ void Label_Parameter_Value_Hash::InternalSwap(Label_Parameter_Value_Hash* other)
 
 // ===================================================================
 
-void Label_Parameter_Value::InitAsDefaultInstance() {
-  ::PluginAdapter::Api::_Label_Parameter_Value_default_instance_.string_.UnsafeSetDefault(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::PluginAdapter::Api::_Label_Parameter_Value_default_instance_.integer_ = PROTOBUF_LONGLONG(0);
-  ::PluginAdapter::Api::_Label_Parameter_Value_default_instance_.decimal_ = 0;
-  ::PluginAdapter::Api::_Label_Parameter_Value_default_instance_.boolean_ = false;
-  ::PluginAdapter::Api::_Label_Parameter_Value_default_instance_.date_ = PROTOBUF_ULONGLONG(0);
-  ::PluginAdapter::Api::_Label_Parameter_Value_default_instance_.array_ = const_cast< ::PluginAdapter::Api::Label_Parameter_Value_Array*>(
-      ::PluginAdapter::Api::Label_Parameter_Value_Array::internal_default_instance());
-  ::PluginAdapter::Api::_Label_Parameter_Value_default_instance_.struct__ = const_cast< ::PluginAdapter::Api::Label_Parameter_Value_Hash*>(
-      ::PluginAdapter::Api::Label_Parameter_Value_Hash::internal_default_instance());
-  ::PluginAdapter::Api::_Label_Parameter_Value_default_instance_.hash_value_ = const_cast< ::PluginAdapter::Api::Label_Parameter_Value_Hash*>(
-      ::PluginAdapter::Api::Label_Parameter_Value_Hash::internal_default_instance());
-}
 class Label_Parameter_Value::_Internal {
  public:
   static const ::PluginAdapter::Api::Label_Parameter_Value_Array& array(const Label_Parameter_Value* msg);
@@ -925,10 +923,11 @@ Label_Parameter_Value::_Internal::hash_value(const Label_Parameter_Value* msg) {
   return *msg->type_.hash_value_;
 }
 void Label_Parameter_Value::set_allocated_array(::PluginAdapter::Api::Label_Parameter_Value_Array* array) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_type();
   if (array) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(array);
     if (message_arena != submessage_arena) {
       array = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, array, submessage_arena);
@@ -939,10 +938,11 @@ void Label_Parameter_Value::set_allocated_array(::PluginAdapter::Api::Label_Para
   // @@protoc_insertion_point(field_set_allocated:PluginAdapter.Api.Label.Parameter.Value.array)
 }
 void Label_Parameter_Value::set_allocated_struct_(::PluginAdapter::Api::Label_Parameter_Value_Hash* struct_) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_type();
   if (struct_) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(struct_);
     if (message_arena != submessage_arena) {
       struct_ = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, struct_, submessage_arena);
@@ -953,10 +953,11 @@ void Label_Parameter_Value::set_allocated_struct_(::PluginAdapter::Api::Label_Pa
   // @@protoc_insertion_point(field_set_allocated:PluginAdapter.Api.Label.Parameter.Value.struct)
 }
 void Label_Parameter_Value::set_allocated_hash_value(::PluginAdapter::Api::Label_Parameter_Value_Hash* hash_value) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_type();
   if (hash_value) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(hash_value);
     if (message_arena != submessage_arena) {
       hash_value = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, hash_value, submessage_arena);
@@ -966,15 +967,15 @@ void Label_Parameter_Value::set_allocated_hash_value(::PluginAdapter::Api::Label
   }
   // @@protoc_insertion_point(field_set_allocated:PluginAdapter.Api.Label.Parameter.Value.hash_value)
 }
-Label_Parameter_Value::Label_Parameter_Value()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Label_Parameter_Value::Label_Parameter_Value(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:PluginAdapter.Api.Label.Parameter.Value)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:PluginAdapter.Api.Label.Parameter.Value)
 }
 Label_Parameter_Value::Label_Parameter_Value(const Label_Parameter_Value& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   clear_has_type();
   switch (from.type_case()) {
     case kString: {
@@ -1024,14 +1025,22 @@ void Label_Parameter_Value::SharedCtor() {
 Label_Parameter_Value::~Label_Parameter_Value() {
   // @@protoc_insertion_point(destructor:PluginAdapter.Api.Label.Parameter.Value)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Label_Parameter_Value::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (has_type()) {
     clear_type();
   }
 }
 
+void Label_Parameter_Value::ArenaDtor(void* object) {
+  Label_Parameter_Value* _this = reinterpret_cast< Label_Parameter_Value* >(object);
+  (void)_this;
+}
+void Label_Parameter_Value::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Label_Parameter_Value::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
@@ -1045,7 +1054,7 @@ void Label_Parameter_Value::clear_type() {
 // @@protoc_insertion_point(one_of_clear_start:PluginAdapter.Api.Label.Parameter.Value)
   switch (type_case()) {
     case kString: {
-      type_.string_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+      type_.string_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
       break;
     }
     case kInteger: {
@@ -1065,15 +1074,21 @@ void Label_Parameter_Value::clear_type() {
       break;
     }
     case kArray: {
-      delete type_.array_;
+      if (GetArena() == nullptr) {
+        delete type_.array_;
+      }
       break;
     }
     case kStruct: {
-      delete type_.struct__;
+      if (GetArena() == nullptr) {
+        delete type_.struct__;
+      }
       break;
     }
     case kHashValue: {
-      delete type_.hash_value_;
+      if (GetArena() == nullptr) {
+        delete type_.hash_value_;
+      }
       break;
     }
     case TYPE_NOT_SET: {
@@ -1091,7 +1106,7 @@ void Label_Parameter_Value::Clear() {
   (void) cached_has_bits;
 
   clear_type();
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Label_Parameter_Value::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -1104,14 +1119,16 @@ const char* Label_Parameter_Value::_InternalParse(const char* ptr, ::PROTOBUF_NA
       // string string = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_string(), ptr, ctx, "PluginAdapter.Api.Label.Parameter.Value.string");
+          auto str = _internal_mutable_string();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "PluginAdapter.Api.Label.Parameter.Value.string"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // int64 integer = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          _internal_set_integer(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr));
+          _internal_set_integer(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1125,14 +1142,14 @@ const char* Label_Parameter_Value::_InternalParse(const char* ptr, ::PROTOBUF_NA
       // bool boolean = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          _internal_set_boolean(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr));
+          _internal_set_boolean(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // uint64 date = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
-          _internal_set_date(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr));
+          _internal_set_date(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1163,7 +1180,9 @@ const char* Label_Parameter_Value::_InternalParse(const char* ptr, ::PROTOBUF_NA
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -1177,7 +1196,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Label_Parameter_Value::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* Label_Parameter_Value::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:PluginAdapter.Api.Label.Parameter.Value)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1195,55 +1214,55 @@ failure:
 
   // int64 integer = 2;
   if (_internal_has_integer()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(2, this->_internal_integer(), target);
   }
 
   // double decimal = 3;
   if (_internal_has_decimal()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(3, this->_internal_decimal(), target);
   }
 
   // bool boolean = 4;
   if (_internal_has_boolean()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(4, this->_internal_boolean(), target);
   }
 
   // uint64 date = 5;
   if (_internal_has_date()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(5, this->_internal_date(), target);
   }
 
   // .PluginAdapter.Api.Label.Parameter.Value.Array array = 6;
   if (_internal_has_array()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         6, _Internal::array(this), target, stream);
   }
 
   // .PluginAdapter.Api.Label.Parameter.Value.Hash struct = 7;
   if (_internal_has_struct_()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         7, _Internal::struct_(this), target, stream);
   }
 
   // .PluginAdapter.Api.Label.Parameter.Value.Hash hash_value = 8;
   if (_internal_has_hash_value()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         8, _Internal::hash_value(this), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:PluginAdapter.Api.Label.Parameter.Value)
   return target;
@@ -1341,7 +1360,7 @@ void Label_Parameter_Value::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& fr
 void Label_Parameter_Value::MergeFrom(const Label_Parameter_Value& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:PluginAdapter.Api.Label.Parameter.Value)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1404,7 +1423,7 @@ bool Label_Parameter_Value::IsInitialized() const {
 
 void Label_Parameter_Value::InternalSwap(Label_Parameter_Value* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   swap(type_, other->type_);
   swap(_oneof_case_[0], other->_oneof_case_[0]);
 }
@@ -1416,10 +1435,6 @@ void Label_Parameter_Value::InternalSwap(Label_Parameter_Value* other) {
 
 // ===================================================================
 
-void Label_Parameter::InitAsDefaultInstance() {
-  ::PluginAdapter::Api::_Label_Parameter_default_instance_._instance.get_mutable()->value_ = const_cast< ::PluginAdapter::Api::Label_Parameter_Value*>(
-      ::PluginAdapter::Api::Label_Parameter_Value::internal_default_instance());
-}
 class Label_Parameter::_Internal {
  public:
   static const ::PluginAdapter::Api::Label_Parameter_Value& value(const Label_Parameter* msg);
@@ -1429,18 +1444,19 @@ const ::PluginAdapter::Api::Label_Parameter_Value&
 Label_Parameter::_Internal::value(const Label_Parameter* msg) {
   return *msg->value_;
 }
-Label_Parameter::Label_Parameter()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Label_Parameter::Label_Parameter(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:PluginAdapter.Api.Label.Parameter)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:PluginAdapter.Api.Label.Parameter)
 }
 Label_Parameter::Label_Parameter(const Label_Parameter& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_name().empty()) {
-    name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
+    name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_name(), 
+      GetArena());
   }
   if (from._internal_has_value()) {
     value_ = new ::PluginAdapter::Api::Label_Parameter_Value(*from.value_);
@@ -1459,13 +1475,21 @@ void Label_Parameter::SharedCtor() {
 Label_Parameter::~Label_Parameter() {
   // @@protoc_insertion_point(destructor:PluginAdapter.Api.Label.Parameter)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Label_Parameter::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete value_;
 }
 
+void Label_Parameter::ArenaDtor(void* object) {
+  Label_Parameter* _this = reinterpret_cast< Label_Parameter* >(object);
+  (void)_this;
+}
+void Label_Parameter::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Label_Parameter::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
@@ -1481,12 +1505,12 @@ void Label_Parameter::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (GetArenaNoVirtual() == nullptr && value_ != nullptr) {
+  name_.ClearToEmpty();
+  if (GetArena() == nullptr && value_ != nullptr) {
     delete value_;
   }
   value_ = nullptr;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Label_Parameter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -1499,7 +1523,9 @@ const char* Label_Parameter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPAC
       // string name = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_name(), ptr, ctx, "PluginAdapter.Api.Label.Parameter.name");
+          auto str = _internal_mutable_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "PluginAdapter.Api.Label.Parameter.name"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1516,7 +1542,9 @@ const char* Label_Parameter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPAC
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -1530,7 +1558,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Label_Parameter::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* Label_Parameter::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:PluginAdapter.Api.Label.Parameter)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1548,15 +1576,15 @@ failure:
 
   // .PluginAdapter.Api.Label.Parameter.Value value = 2;
   if (this->has_value()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         2, _Internal::value(this), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:PluginAdapter.Api.Label.Parameter)
   return target;
@@ -1611,13 +1639,12 @@ void Label_Parameter::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Label_Parameter::MergeFrom(const Label_Parameter& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:PluginAdapter.Api.Label.Parameter)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.name().size() > 0) {
-
-    name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
+    _internal_set_name(from._internal_name());
   }
   if (from.has_value()) {
     _internal_mutable_value()->::PluginAdapter::Api::Label_Parameter_Value::MergeFrom(from._internal_value());
@@ -1644,9 +1671,8 @@ bool Label_Parameter::IsInitialized() const {
 
 void Label_Parameter::InternalSwap(Label_Parameter* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(value_, other->value_);
 }
 
@@ -1657,33 +1683,35 @@ void Label_Parameter::InternalSwap(Label_Parameter* other) {
 
 // ===================================================================
 
-void Label::InitAsDefaultInstance() {
-}
 class Label::_Internal {
  public:
 };
 
-Label::Label()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Label::Label(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  parameters_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:PluginAdapter.Api.Label)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:PluginAdapter.Api.Label)
 }
 Label::Label(const Label& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr),
       parameters_(from.parameters_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   label_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_label().empty()) {
-    label_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.label_);
+    label_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_label(), 
+      GetArena());
   }
   channel_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_channel().empty()) {
-    channel_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.channel_);
+    channel_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_channel(), 
+      GetArena());
   }
   physical_label_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_physical_label().empty()) {
-    physical_label_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.physical_label_);
+    physical_label_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_physical_label(), 
+      GetArena());
   }
   ::memcpy(&timestamp_, &from.timestamp_,
     static_cast<size_t>(reinterpret_cast<char*>(&type_) -
@@ -1696,22 +1724,31 @@ void Label::SharedCtor() {
   label_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   channel_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   physical_label_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::memset(&timestamp_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&type_) -
+  ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+      reinterpret_cast<char*>(&timestamp_) - reinterpret_cast<char*>(this)),
+      0, static_cast<size_t>(reinterpret_cast<char*>(&type_) -
       reinterpret_cast<char*>(&timestamp_)) + sizeof(type_));
 }
 
 Label::~Label() {
   // @@protoc_insertion_point(destructor:PluginAdapter.Api.Label)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Label::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   label_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   channel_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   physical_label_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void Label::ArenaDtor(void* object) {
+  Label* _this = reinterpret_cast< Label* >(object);
+  (void)_this;
+}
+void Label::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Label::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
@@ -1728,13 +1765,13 @@ void Label::Clear() {
   (void) cached_has_bits;
 
   parameters_.Clear();
-  label_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  channel_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  physical_label_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  label_.ClearToEmpty();
+  channel_.ClearToEmpty();
+  physical_label_.ClearToEmpty();
   ::memset(&timestamp_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&type_) -
       reinterpret_cast<char*>(&timestamp_)) + sizeof(type_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Label::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -1747,7 +1784,7 @@ const char* Label::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
       // .PluginAdapter.Api.Label.LabelType type = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_type(static_cast<::PluginAdapter::Api::Label_LabelType>(val));
         } else goto handle_unusual;
@@ -1755,14 +1792,18 @@ const char* Label::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
       // string label = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_label(), ptr, ctx, "PluginAdapter.Api.Label.label");
+          auto str = _internal_mutable_label();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "PluginAdapter.Api.Label.label"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // string channel = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_channel(), ptr, ctx, "PluginAdapter.Api.Label.channel");
+          auto str = _internal_mutable_channel();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "PluginAdapter.Api.Label.channel"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1781,21 +1822,22 @@ const char* Label::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
       // uint64 timestamp = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
-          timestamp_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          timestamp_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // bytes physical_label = 6;
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(_internal_mutable_physical_label(), ptr, ctx);
+          auto str = _internal_mutable_physical_label();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // uint64 correlation_id = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 56)) {
-          correlation_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          correlation_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1805,7 +1847,9 @@ const char* Label::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -1819,7 +1863,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Label::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* Label::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:PluginAdapter.Api.Label)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1827,7 +1871,7 @@ failure:
 
   // .PluginAdapter.Api.Label.LabelType type = 1;
   if (this->type() != 0) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       1, this->_internal_type(), target);
   }
@@ -1855,14 +1899,14 @@ failure:
   // repeated .PluginAdapter.Api.Label.Parameter parameters = 4;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->_internal_parameters_size()); i < n; i++) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(4, this->_internal_parameters(i), target, stream);
+      InternalWriteMessage(4, this->_internal_parameters(i), target, stream);
   }
 
   // uint64 timestamp = 5;
   if (this->timestamp() != 0) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(5, this->_internal_timestamp(), target);
   }
 
@@ -1874,13 +1918,13 @@ failure:
 
   // uint64 correlation_id = 7;
   if (this->correlation_id() != 0) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(7, this->_internal_correlation_id(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:PluginAdapter.Api.Label)
   return target;
@@ -1969,22 +2013,19 @@ void Label::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Label::MergeFrom(const Label& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:PluginAdapter.Api.Label)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   parameters_.MergeFrom(from.parameters_);
   if (from.label().size() > 0) {
-
-    label_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.label_);
+    _internal_set_label(from._internal_label());
   }
   if (from.channel().size() > 0) {
-
-    channel_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.channel_);
+    _internal_set_channel(from._internal_channel());
   }
   if (from.physical_label().size() > 0) {
-
-    physical_label_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.physical_label_);
+    _internal_set_physical_label(from._internal_physical_label());
   }
   if (from.timestamp() != 0) {
     _internal_set_timestamp(from._internal_timestamp());
@@ -2017,17 +2058,17 @@ bool Label::IsInitialized() const {
 
 void Label::InternalSwap(Label* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   parameters_.InternalSwap(&other->parameters_);
-  label_.Swap(&other->label_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  channel_.Swap(&other->channel_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  physical_label_.Swap(&other->physical_label_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  swap(timestamp_, other->timestamp_);
-  swap(correlation_id_, other->correlation_id_);
-  swap(type_, other->type_);
+  label_.Swap(&other->label_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  channel_.Swap(&other->channel_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  physical_label_.Swap(&other->physical_label_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Label, type_)
+      + sizeof(Label::type_)
+      - PROTOBUF_FIELD_OFFSET(Label, timestamp_)>(
+          reinterpret_cast<char*>(&timestamp_),
+          reinterpret_cast<char*>(&other->timestamp_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Label::GetMetadata() const {
@@ -2040,22 +2081,22 @@ void Label::InternalSwap(Label* other) {
 }  // namespace PluginAdapter
 PROTOBUF_NAMESPACE_OPEN
 template<> PROTOBUF_NOINLINE ::PluginAdapter::Api::Label_Parameter_Value_Array* Arena::CreateMaybeMessage< ::PluginAdapter::Api::Label_Parameter_Value_Array >(Arena* arena) {
-  return Arena::CreateInternal< ::PluginAdapter::Api::Label_Parameter_Value_Array >(arena);
+  return Arena::CreateMessageInternal< ::PluginAdapter::Api::Label_Parameter_Value_Array >(arena);
 }
 template<> PROTOBUF_NOINLINE ::PluginAdapter::Api::Label_Parameter_Value_Hash_Entry* Arena::CreateMaybeMessage< ::PluginAdapter::Api::Label_Parameter_Value_Hash_Entry >(Arena* arena) {
-  return Arena::CreateInternal< ::PluginAdapter::Api::Label_Parameter_Value_Hash_Entry >(arena);
+  return Arena::CreateMessageInternal< ::PluginAdapter::Api::Label_Parameter_Value_Hash_Entry >(arena);
 }
 template<> PROTOBUF_NOINLINE ::PluginAdapter::Api::Label_Parameter_Value_Hash* Arena::CreateMaybeMessage< ::PluginAdapter::Api::Label_Parameter_Value_Hash >(Arena* arena) {
-  return Arena::CreateInternal< ::PluginAdapter::Api::Label_Parameter_Value_Hash >(arena);
+  return Arena::CreateMessageInternal< ::PluginAdapter::Api::Label_Parameter_Value_Hash >(arena);
 }
 template<> PROTOBUF_NOINLINE ::PluginAdapter::Api::Label_Parameter_Value* Arena::CreateMaybeMessage< ::PluginAdapter::Api::Label_Parameter_Value >(Arena* arena) {
-  return Arena::CreateInternal< ::PluginAdapter::Api::Label_Parameter_Value >(arena);
+  return Arena::CreateMessageInternal< ::PluginAdapter::Api::Label_Parameter_Value >(arena);
 }
 template<> PROTOBUF_NOINLINE ::PluginAdapter::Api::Label_Parameter* Arena::CreateMaybeMessage< ::PluginAdapter::Api::Label_Parameter >(Arena* arena) {
-  return Arena::CreateInternal< ::PluginAdapter::Api::Label_Parameter >(arena);
+  return Arena::CreateMessageInternal< ::PluginAdapter::Api::Label_Parameter >(arena);
 }
 template<> PROTOBUF_NOINLINE ::PluginAdapter::Api::Label* Arena::CreateMaybeMessage< ::PluginAdapter::Api::Label >(Arena* arena) {
-  return Arena::CreateInternal< ::PluginAdapter::Api::Label >(arena);
+  return Arena::CreateMessageInternal< ::PluginAdapter::Api::Label >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

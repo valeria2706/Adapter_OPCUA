@@ -20,10 +20,6 @@ namespace Api {
 class Configuration_ItemDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Configuration_Item> _instance;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr string_;
-  ::PROTOBUF_NAMESPACE_ID::int64 integer_;
-  float float__;
-  bool boolean_;
 } _Configuration_Item_default_instance_;
 class ConfigurationDefaultTypeInternal {
  public:
@@ -39,7 +35,6 @@ static void InitDefaultsscc_info_Configuration_configuration_2eproto() {
     new (ptr) ::PluginAdapter::Api::Configuration();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::PluginAdapter::Api::Configuration::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Configuration_configuration_2eproto =
@@ -54,7 +49,6 @@ static void InitDefaultsscc_info_Configuration_Item_configuration_2eproto() {
     new (ptr) ::PluginAdapter::Api::Configuration_Item();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::PluginAdapter::Api::Configuration_Item::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Configuration_Item_configuration_2eproto =
@@ -72,10 +66,10 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_configuration_2eproto::offsets
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::PluginAdapter::Api::Configuration_Item, key_),
   PROTOBUF_FIELD_OFFSET(::PluginAdapter::Api::Configuration_Item, description_),
-  offsetof(::PluginAdapter::Api::Configuration_ItemDefaultTypeInternal, string_),
-  offsetof(::PluginAdapter::Api::Configuration_ItemDefaultTypeInternal, integer_),
-  offsetof(::PluginAdapter::Api::Configuration_ItemDefaultTypeInternal, float__),
-  offsetof(::PluginAdapter::Api::Configuration_ItemDefaultTypeInternal, boolean_),
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::PluginAdapter::Api::Configuration_Item, type_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::PluginAdapter::Api::Configuration, _internal_metadata_),
@@ -110,48 +104,42 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_con
   &scc_info_Configuration_Item_configuration_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_configuration_2eproto_once;
-static bool descriptor_table_configuration_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_configuration_2eproto = {
-  &descriptor_table_configuration_2eproto_initialized, descriptor_table_protodef_configuration_2eproto, "configuration.proto", 243,
+  false, false, descriptor_table_protodef_configuration_2eproto, "configuration.proto", 243,
   &descriptor_table_configuration_2eproto_once, descriptor_table_configuration_2eproto_sccs, descriptor_table_configuration_2eproto_deps, 2, 0,
   schemas, file_default_instances, TableStruct_configuration_2eproto::offsets,
   file_level_metadata_configuration_2eproto, 2, file_level_enum_descriptors_configuration_2eproto, file_level_service_descriptors_configuration_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
-static bool dynamic_init_dummy_configuration_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_configuration_2eproto), true);
+static bool dynamic_init_dummy_configuration_2eproto = (static_cast<void>(::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_configuration_2eproto)), true);
 namespace PluginAdapter {
 namespace Api {
 
 // ===================================================================
 
-void Configuration_Item::InitAsDefaultInstance() {
-  ::PluginAdapter::Api::_Configuration_Item_default_instance_.string_.UnsafeSetDefault(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::PluginAdapter::Api::_Configuration_Item_default_instance_.integer_ = PROTOBUF_LONGLONG(0);
-  ::PluginAdapter::Api::_Configuration_Item_default_instance_.float__ = 0;
-  ::PluginAdapter::Api::_Configuration_Item_default_instance_.boolean_ = false;
-}
 class Configuration_Item::_Internal {
  public:
 };
 
-Configuration_Item::Configuration_Item()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Configuration_Item::Configuration_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:PluginAdapter.Api.Configuration.Item)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:PluginAdapter.Api.Configuration.Item)
 }
 Configuration_Item::Configuration_Item(const Configuration_Item& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_key().empty()) {
-    key_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.key_);
+    key_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_key(), 
+      GetArena());
   }
   description_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_description().empty()) {
-    description_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.description_);
+    description_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_description(), 
+      GetArena());
   }
   clear_has_type();
   switch (from.type_case()) {
@@ -188,9 +176,11 @@ void Configuration_Item::SharedCtor() {
 Configuration_Item::~Configuration_Item() {
   // @@protoc_insertion_point(destructor:PluginAdapter.Api.Configuration.Item)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Configuration_Item::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   key_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   description_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (has_type()) {
@@ -198,6 +188,12 @@ void Configuration_Item::SharedDtor() {
   }
 }
 
+void Configuration_Item::ArenaDtor(void* object) {
+  Configuration_Item* _this = reinterpret_cast< Configuration_Item* >(object);
+  (void)_this;
+}
+void Configuration_Item::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Configuration_Item::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
@@ -211,7 +207,7 @@ void Configuration_Item::clear_type() {
 // @@protoc_insertion_point(one_of_clear_start:PluginAdapter.Api.Configuration.Item)
   switch (type_case()) {
     case kString: {
-      type_.string_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+      type_.string_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
       break;
     }
     case kInteger: {
@@ -240,10 +236,10 @@ void Configuration_Item::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  key_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  description_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  key_.ClearToEmpty();
+  description_.ClearToEmpty();
   clear_type();
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Configuration_Item::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -256,28 +252,34 @@ const char* Configuration_Item::_InternalParse(const char* ptr, ::PROTOBUF_NAMES
       // string key = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_key(), ptr, ctx, "PluginAdapter.Api.Configuration.Item.key");
+          auto str = _internal_mutable_key();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "PluginAdapter.Api.Configuration.Item.key"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // string description = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_description(), ptr, ctx, "PluginAdapter.Api.Configuration.Item.description");
+          auto str = _internal_mutable_description();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "PluginAdapter.Api.Configuration.Item.description"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // string string = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_string(), ptr, ctx, "PluginAdapter.Api.Configuration.Item.string");
+          auto str = _internal_mutable_string();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "PluginAdapter.Api.Configuration.Item.string"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // int64 integer = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          _internal_set_integer(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr));
+          _internal_set_integer(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -291,7 +293,7 @@ const char* Configuration_Item::_InternalParse(const char* ptr, ::PROTOBUF_NAMES
       // bool boolean = 6;
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
-          _internal_set_boolean(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr));
+          _internal_set_boolean(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -301,7 +303,9 @@ const char* Configuration_Item::_InternalParse(const char* ptr, ::PROTOBUF_NAMES
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -315,7 +319,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Configuration_Item::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* Configuration_Item::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:PluginAdapter.Api.Configuration.Item)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -353,25 +357,25 @@ failure:
 
   // int64 integer = 4;
   if (_internal_has_integer()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(4, this->_internal_integer(), target);
   }
 
   // float float = 5;
   if (_internal_has_float_()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(5, this->_internal_float_(), target);
   }
 
   // bool boolean = 6;
   if (_internal_has_boolean()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(6, this->_internal_boolean(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:PluginAdapter.Api.Configuration.Item)
   return target;
@@ -455,17 +459,15 @@ void Configuration_Item::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from)
 void Configuration_Item::MergeFrom(const Configuration_Item& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:PluginAdapter.Api.Configuration.Item)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.key().size() > 0) {
-
-    key_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.key_);
+    _internal_set_key(from._internal_key());
   }
   if (from.description().size() > 0) {
-
-    description_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.description_);
+    _internal_set_description(from._internal_description());
   }
   switch (from.type_case()) {
     case kString: {
@@ -510,11 +512,9 @@ bool Configuration_Item::IsInitialized() const {
 
 void Configuration_Item::InternalSwap(Configuration_Item* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  key_.Swap(&other->key_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  description_.Swap(&other->description_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  key_.Swap(&other->key_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  description_.Swap(&other->description_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(type_, other->type_);
   swap(_oneof_case_[0], other->_oneof_case_[0]);
 }
@@ -526,22 +526,21 @@ void Configuration_Item::InternalSwap(Configuration_Item* other) {
 
 // ===================================================================
 
-void Configuration::InitAsDefaultInstance() {
-}
 class Configuration::_Internal {
  public:
 };
 
-Configuration::Configuration()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Configuration::Configuration(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  items_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:PluginAdapter.Api.Configuration)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:PluginAdapter.Api.Configuration)
 }
 Configuration::Configuration(const Configuration& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr),
       items_(from.items_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:PluginAdapter.Api.Configuration)
 }
 
@@ -552,11 +551,19 @@ void Configuration::SharedCtor() {
 Configuration::~Configuration() {
   // @@protoc_insertion_point(destructor:PluginAdapter.Api.Configuration)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Configuration::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Configuration::ArenaDtor(void* object) {
+  Configuration* _this = reinterpret_cast< Configuration* >(object);
+  (void)_this;
+}
+void Configuration::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Configuration::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
@@ -573,7 +580,7 @@ void Configuration::Clear() {
   (void) cached_has_bits;
 
   items_.Clear();
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Configuration::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -601,7 +608,9 @@ const char* Configuration::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -615,7 +624,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Configuration::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* Configuration::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:PluginAdapter.Api.Configuration)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -624,14 +633,14 @@ failure:
   // repeated .PluginAdapter.Api.Configuration.Item items = 1;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->_internal_items_size()); i < n; i++) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(1, this->_internal_items(i), target, stream);
+      InternalWriteMessage(1, this->_internal_items(i), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:PluginAdapter.Api.Configuration)
   return target;
@@ -679,7 +688,7 @@ void Configuration::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Configuration::MergeFrom(const Configuration& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:PluginAdapter.Api.Configuration)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -706,7 +715,7 @@ bool Configuration::IsInitialized() const {
 
 void Configuration::InternalSwap(Configuration* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   items_.InternalSwap(&other->items_);
 }
 
@@ -720,10 +729,10 @@ void Configuration::InternalSwap(Configuration* other) {
 }  // namespace PluginAdapter
 PROTOBUF_NAMESPACE_OPEN
 template<> PROTOBUF_NOINLINE ::PluginAdapter::Api::Configuration_Item* Arena::CreateMaybeMessage< ::PluginAdapter::Api::Configuration_Item >(Arena* arena) {
-  return Arena::CreateInternal< ::PluginAdapter::Api::Configuration_Item >(arena);
+  return Arena::CreateMessageInternal< ::PluginAdapter::Api::Configuration_Item >(arena);
 }
 template<> PROTOBUF_NOINLINE ::PluginAdapter::Api::Configuration* Arena::CreateMaybeMessage< ::PluginAdapter::Api::Configuration >(Arena* arena) {
-  return Arena::CreateInternal< ::PluginAdapter::Api::Configuration >(arena);
+  return Arena::CreateMessageInternal< ::PluginAdapter::Api::Configuration >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

@@ -31,7 +31,6 @@ static void InitDefaultsscc_info_Announcements_announcements_2eproto() {
     new (ptr) ::PluginAdapter::Api::Announcements();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::PluginAdapter::Api::Announcements::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Announcements_announcements_2eproto =
@@ -71,23 +70,20 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_ann
   &scc_info_Announcements_announcements_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_announcements_2eproto_once;
-static bool descriptor_table_announcements_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_announcements_2eproto = {
-  &descriptor_table_announcements_2eproto_initialized, descriptor_table_protodef_announcements_2eproto, "announcements.proto", 141,
+  false, false, descriptor_table_protodef_announcements_2eproto, "announcements.proto", 141,
   &descriptor_table_announcements_2eproto_once, descriptor_table_announcements_2eproto_sccs, descriptor_table_announcements_2eproto_deps, 1, 1,
   schemas, file_default_instances, TableStruct_announcements_2eproto::offsets,
   file_level_metadata_announcements_2eproto, 1, file_level_enum_descriptors_announcements_2eproto, file_level_service_descriptors_announcements_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
-static bool dynamic_init_dummy_announcements_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_announcements_2eproto), true);
+static bool dynamic_init_dummy_announcements_2eproto = (static_cast<void>(::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_announcements_2eproto)), true);
 namespace PluginAdapter {
 namespace Api {
 
 // ===================================================================
 
-void Announcements::InitAsDefaultInstance() {
-}
 class Announcements::_Internal {
  public:
 };
@@ -95,16 +91,17 @@ class Announcements::_Internal {
 void Announcements::clear_announcements() {
   announcements_.Clear();
 }
-Announcements::Announcements()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Announcements::Announcements(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  announcements_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:PluginAdapter.Api.Announcements)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:PluginAdapter.Api.Announcements)
 }
 Announcements::Announcements(const Announcements& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr),
       announcements_(from.announcements_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:PluginAdapter.Api.Announcements)
 }
 
@@ -115,11 +112,19 @@ void Announcements::SharedCtor() {
 Announcements::~Announcements() {
   // @@protoc_insertion_point(destructor:PluginAdapter.Api.Announcements)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Announcements::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Announcements::ArenaDtor(void* object) {
+  Announcements* _this = reinterpret_cast< Announcements* >(object);
+  (void)_this;
+}
+void Announcements::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Announcements::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
@@ -136,7 +141,7 @@ void Announcements::Clear() {
   (void) cached_has_bits;
 
   announcements_.Clear();
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Announcements::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -164,7 +169,9 @@ const char* Announcements::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -178,7 +185,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Announcements::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* Announcements::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:PluginAdapter.Api.Announcements)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -187,14 +194,14 @@ failure:
   // repeated .PluginAdapter.Api.Announcement announcements = 1;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->_internal_announcements_size()); i < n; i++) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(1, this->_internal_announcements(i), target, stream);
+      InternalWriteMessage(1, this->_internal_announcements(i), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:PluginAdapter.Api.Announcements)
   return target;
@@ -242,7 +249,7 @@ void Announcements::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Announcements::MergeFrom(const Announcements& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:PluginAdapter.Api.Announcements)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -269,7 +276,7 @@ bool Announcements::IsInitialized() const {
 
 void Announcements::InternalSwap(Announcements* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   announcements_.InternalSwap(&other->announcements_);
 }
 
@@ -283,7 +290,7 @@ void Announcements::InternalSwap(Announcements* other) {
 }  // namespace PluginAdapter
 PROTOBUF_NAMESPACE_OPEN
 template<> PROTOBUF_NOINLINE ::PluginAdapter::Api::Announcements* Arena::CreateMaybeMessage< ::PluginAdapter::Api::Announcements >(Arena* arena) {
-  return Arena::CreateInternal< ::PluginAdapter::Api::Announcements >(arena);
+  return Arena::CreateMessageInternal< ::PluginAdapter::Api::Announcements >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

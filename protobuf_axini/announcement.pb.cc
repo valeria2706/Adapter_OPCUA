@@ -32,7 +32,6 @@ static void InitDefaultsscc_info_Announcement_announcement_2eproto() {
     new (ptr) ::PluginAdapter::Api::Announcement();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::PluginAdapter::Api::Announcement::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_Announcement_announcement_2eproto =
@@ -78,25 +77,20 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_ann
   &scc_info_Announcement_announcement_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_announcement_2eproto_once;
-static bool descriptor_table_announcement_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_announcement_2eproto = {
-  &descriptor_table_announcement_2eproto_initialized, descriptor_table_protodef_announcement_2eproto, "announcement.proto", 210,
+  false, false, descriptor_table_protodef_announcement_2eproto, "announcement.proto", 210,
   &descriptor_table_announcement_2eproto_once, descriptor_table_announcement_2eproto_sccs, descriptor_table_announcement_2eproto_deps, 1, 2,
   schemas, file_default_instances, TableStruct_announcement_2eproto::offsets,
   file_level_metadata_announcement_2eproto, 1, file_level_enum_descriptors_announcement_2eproto, file_level_service_descriptors_announcement_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
-static bool dynamic_init_dummy_announcement_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_announcement_2eproto), true);
+static bool dynamic_init_dummy_announcement_2eproto = (static_cast<void>(::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_announcement_2eproto)), true);
 namespace PluginAdapter {
 namespace Api {
 
 // ===================================================================
 
-void Announcement::InitAsDefaultInstance() {
-  ::PluginAdapter::Api::_Announcement_default_instance_._instance.get_mutable()->configuration_ = const_cast< ::PluginAdapter::Api::Configuration*>(
-      ::PluginAdapter::Api::Configuration::internal_default_instance());
-}
 class Announcement::_Internal {
  public:
   static const ::PluginAdapter::Api::Configuration& configuration(const Announcement* msg);
@@ -107,7 +101,7 @@ Announcement::_Internal::configuration(const Announcement* msg) {
   return *msg->configuration_;
 }
 void Announcement::clear_configuration() {
-  if (GetArenaNoVirtual() == nullptr && configuration_ != nullptr) {
+  if (GetArena() == nullptr && configuration_ != nullptr) {
     delete configuration_;
   }
   configuration_ = nullptr;
@@ -115,19 +109,21 @@ void Announcement::clear_configuration() {
 void Announcement::clear_labels() {
   labels_.Clear();
 }
-Announcement::Announcement()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Announcement::Announcement(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  labels_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:PluginAdapter.Api.Announcement)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:PluginAdapter.Api.Announcement)
 }
 Announcement::Announcement(const Announcement& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr),
       labels_(from.labels_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_name().empty()) {
-    name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
+    name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_name(), 
+      GetArena());
   }
   if (from._internal_has_configuration()) {
     configuration_ = new ::PluginAdapter::Api::Configuration(*from.configuration_);
@@ -146,13 +142,21 @@ void Announcement::SharedCtor() {
 Announcement::~Announcement() {
   // @@protoc_insertion_point(destructor:PluginAdapter.Api.Announcement)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Announcement::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete configuration_;
 }
 
+void Announcement::ArenaDtor(void* object) {
+  Announcement* _this = reinterpret_cast< Announcement* >(object);
+  (void)_this;
+}
+void Announcement::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Announcement::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
@@ -169,12 +173,12 @@ void Announcement::Clear() {
   (void) cached_has_bits;
 
   labels_.Clear();
-  name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (GetArenaNoVirtual() == nullptr && configuration_ != nullptr) {
+  name_.ClearToEmpty();
+  if (GetArena() == nullptr && configuration_ != nullptr) {
     delete configuration_;
   }
   configuration_ = nullptr;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Announcement::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -187,7 +191,9 @@ const char* Announcement::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
       // string name = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_name(), ptr, ctx, "PluginAdapter.Api.Announcement.name");
+          auto str = _internal_mutable_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "PluginAdapter.Api.Announcement.name"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -216,7 +222,9 @@ const char* Announcement::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -230,7 +238,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Announcement::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* Announcement::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:PluginAdapter.Api.Announcement)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -248,23 +256,23 @@ failure:
 
   // .PluginAdapter.Api.Configuration configuration = 2;
   if (this->has_configuration()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         2, _Internal::configuration(this), target, stream);
   }
 
   // repeated .PluginAdapter.Api.Label labels = 3;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->_internal_labels_size()); i < n; i++) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(3, this->_internal_labels(i), target, stream);
+      InternalWriteMessage(3, this->_internal_labels(i), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:PluginAdapter.Api.Announcement)
   return target;
@@ -326,14 +334,13 @@ void Announcement::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Announcement::MergeFrom(const Announcement& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:PluginAdapter.Api.Announcement)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   labels_.MergeFrom(from.labels_);
   if (from.name().size() > 0) {
-
-    name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
+    _internal_set_name(from._internal_name());
   }
   if (from.has_configuration()) {
     _internal_mutable_configuration()->::PluginAdapter::Api::Configuration::MergeFrom(from._internal_configuration());
@@ -360,10 +367,9 @@ bool Announcement::IsInitialized() const {
 
 void Announcement::InternalSwap(Announcement* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   labels_.InternalSwap(&other->labels_);
-  name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(configuration_, other->configuration_);
 }
 
@@ -377,7 +383,7 @@ void Announcement::InternalSwap(Announcement* other) {
 }  // namespace PluginAdapter
 PROTOBUF_NAMESPACE_OPEN
 template<> PROTOBUF_NOINLINE ::PluginAdapter::Api::Announcement* Arena::CreateMaybeMessage< ::PluginAdapter::Api::Announcement >(Arena* arena) {
-  return Arena::CreateInternal< ::PluginAdapter::Api::Announcement >(arena);
+  return Arena::CreateMessageInternal< ::PluginAdapter::Api::Announcement >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

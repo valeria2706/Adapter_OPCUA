@@ -1,0 +1,15 @@
+1. Clone/Download from warehouse branch
+2. Set up the environment
+	(1) Install vcpkg
+	(2) Download websocketpp(.\vcpkg install websocketpp:x64-windows), freeopcua(.\vcpkg install freeopcua:x64-windows), protobuf(.\vcpkg install protobuf:x64-windows), 
+boost(.\vcpkg install boost:x64-windows) from vcpkg 
+This video shows how to install vcpkg and download packages from it:https://www.youtube.com/watch?v=wRnjahwxZ8A&t=137s
+3. Set up the protobuf files
+Make sure the proto files are compiled by the same or older version of protobuf compiler. 
+
+Notes: 
+(1) In main.cpp: The AccessToken gets updated once a week from Axini
+(2) In Websocket.h: OPCUA server/client can be generated here using ServerGenerator/ClientGenerator.
+Parameter for ServerGenerator is the url of the server. In UAEXPERT, the same url address needs to be used to connect with the server.
+(3) In Websocket.cpp: It is very IMPORTANT to firstly annouce all the lables (stimuli/response) defined in your model.
+(4) After connecting the adapter to Axini, you need to go to Adapters-> Edit mapping-> Save(if all your labels are announced already)
